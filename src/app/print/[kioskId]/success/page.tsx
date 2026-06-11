@@ -49,7 +49,7 @@ export default function PrintSuccess({ params }: { params: { kioskId: string } }
   };
 
   return (
-    <div className="min-h-screen bg-ink flex flex-col max-w-md mx-auto animate-fade-in pb-12">
+    <div className="min-h-dvh bg-ink flex flex-col max-w-md mx-auto animate-fade-in pb-[calc(3rem+env(safe-area-inset-bottom))]">
       <PrintFlowHeader currentStep="success" />
 
       <div className="flex-1 p-6 flex flex-col justify-between">

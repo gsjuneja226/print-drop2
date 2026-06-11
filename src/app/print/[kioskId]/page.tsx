@@ -31,7 +31,7 @@ export default function KioskEntry({ params }: { params: { kioskId: string } }) 
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-ink flex flex-col justify-center items-center p-6 text-center">
+      <div className="min-h-dvh bg-ink flex flex-col justify-center items-center p-6 text-center">
         <div className="w-12 h-12 border-4 border-brandBlue border-t-transparent rounded-full animate-spin mb-4"></div>
         <p className="text-customSecondary text-sm font-medium">Connecting to kiosk...</p>
       </div>
@@ -40,7 +40,7 @@ export default function KioskEntry({ params }: { params: { kioskId: string } }) 
 
   if (error || !kiosk) {
     return (
-      <div className="min-h-screen bg-ink flex flex-col justify-center items-center p-6 text-center max-w-md mx-auto">
+      <div className="min-h-dvh bg-ink flex flex-col justify-center items-center p-6 text-center max-w-md mx-auto">
         <div className="w-16 h-16 bg-brandRed/10 rounded-full flex items-center justify-center text-brandRed mb-6">
           <AlertTriangle className="w-8 h-8" />
         </div>
@@ -61,7 +61,7 @@ export default function KioskEntry({ params }: { params: { kioskId: string } }) 
   const isOffline = kiosk.status === 'offline' || kiosk.status === 'inactive';
 
   return (
-    <div className="min-h-screen bg-ink flex flex-col max-w-md mx-auto relative animate-fade-in">
+    <div className="min-h-dvh pb-[env(safe-area-inset-bottom)] bg-ink flex flex-col max-w-md mx-auto relative animate-fade-in">
       {/* Header Banner */}
       <div className="p-6 pb-4 border-b border-customBorder flex items-center gap-3">
         <div className="w-10 h-10 rounded-lg bg-brandBlue/10 flex items-center justify-center text-brandBlue">
@@ -149,7 +149,7 @@ export default function KioskEntry({ params }: { params: { kioskId: string } }) 
         </div>
 
         {/* CTA Button */}
-        <div className="mt-8">
+        <div className="mt-8 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
           <button
             onClick={() => router.push(`/print/${kioskId}/upload`)}
             className="w-full bg-brandBlue hover:bg-brandBlue/90 text-white rounded-md py-4 font-bold flex items-center justify-center gap-2 transition-all shadow-glow"

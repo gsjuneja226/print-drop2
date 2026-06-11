@@ -124,10 +124,10 @@ startxref
   };
 
   return (
-    <div className="min-h-screen bg-ink flex flex-col max-w-md mx-auto animate-fade-in">
+    <div className="min-h-dvh bg-ink flex flex-col max-w-md mx-auto animate-fade-in">
       <PrintFlowHeader currentStep="upload" />
 
-      <div className="flex-1 p-6 flex flex-col justify-between">
+      <div className="flex-1 p-6 flex flex-col justify-between pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
         <div className="space-y-6">
           <div className="text-center">
             <h2 className="text-xl font-display font-semibold text-primaryTxt">Upload Document</h2>

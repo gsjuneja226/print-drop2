@@ -205,7 +205,7 @@ export default function PrintPayment({ params }: { params: { kioskId: string } }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-ink flex flex-col justify-center items-center p-6 text-center">
+      <div className="min-h-dvh bg-ink flex flex-col justify-center items-center p-6 text-center">
         <div className="w-12 h-12 border-4 border-brandBlue border-t-transparent rounded-full animate-spin mb-4"></div>
         <p className="text-customSecondary text-sm">Preparing payment details...</p>
       </div>
@@ -213,7 +213,7 @@ export default function PrintPayment({ params }: { params: { kioskId: string } }
   }
 
   return (
-    <div className="min-h-screen bg-ink flex flex-col max-w-md mx-auto animate-fade-in pb-12">
+    <div className="min-h-dvh bg-ink flex flex-col max-w-md mx-auto animate-fade-in pb-[calc(3rem+env(safe-area-inset-bottom))]">
       <PrintFlowHeader currentStep="payment" />
 
       <div className="flex-1 p-6 flex flex-col justify-between">
@@ -252,13 +252,13 @@ export default function PrintPayment({ params }: { params: { kioskId: string } }
                   {colorMode === 'color' ? '🎨 Color' : '⬛ Black & White'}
                 </span>
                 <span className="bg-ink border border-customBorder/60 px-2.5 py-1 text-[10px] font-semibold rounded text-primaryTxt capitalize">
-                  {sides === 'double' ? '📋 Double-sided' : '📄 Single-sided'}
+                  📄 Single-sided
                 </span>
                 <span className="bg-ink border border-customBorder/60 px-2.5 py-1 text-[10px] font-semibold rounded text-primaryTxt capitalize">
                   {copies} {copies === 1 ? 'Copy' : 'Copies'}
                 </span>
                 <span className="bg-ink border border-customBorder/60 px-2.5 py-1 text-[10px] font-semibold rounded text-primaryTxt uppercase">
-                  {paperSize} Size
+                  A4 Size
                 </span>
                 <span className="bg-ink border border-customBorder/60 px-2.5 py-1 text-[10px] font-semibold rounded text-primaryTxt capitalize">
                   {orientation}

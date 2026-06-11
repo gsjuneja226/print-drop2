@@ -18,9 +18,9 @@ export default function PrintOptions({ params }: { params: { kioskId: string } }
 
   // Print Settings Options
   const [colorMode, setColorMode] = useState<'bw' | 'color'>('bw');
-  const [sides, setSides] = useState<'single' | 'double'>('single');
+  const sides = 'single';
   const [copies, setCopies] = useState<number>(1);
-  const [paperSize, setPaperSize] = useState<'A4' | 'A3' | 'Letter'>('A4');
+  const paperSize = 'A4';
   const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
   const [pageRangeType, setPageRangeType] = useState<'all' | 'custom'>('all');
   const [customRange, setCustomRange] = useState<string>('');
@@ -50,9 +50,7 @@ export default function PrintOptions({ params }: { params: { kioskId: string } }
     ? docPageCount 
     : parsePageRange(customRange, docPageCount);
 
-  const physicalSheetsCount = sides === 'double' 
-    ? Math.ceil(selectedPagesCount / 2) 
-    : selectedPagesCount;
+  const physicalSheetsCount = selectedPagesCount;
 
   const totalSheetsToPrint = physicalSheetsCount * copies;
   const pricePerPage = colorMode === 'color' ? 8 : 2;
@@ -122,7 +120,7 @@ export default function PrintOptions({ params }: { params: { kioskId: string } }
   }
 
   return (
-    <div className="min-h-screen bg-ink flex flex-col max-w-md mx-auto animate-fade-in pb-32">
+    <div className="min-h-dvh bg-ink flex flex-col max-w-md mx-auto animate-fade-in pb-32">
       <PrintFlowHeader currentStep="options" />
 
       <div className="flex-1 p-6 space-y-6">
@@ -165,37 +163,7 @@ export default function PrintOptions({ params }: { params: { kioskId: string } }
           </div>
         </div>
 
-        {/* 2. SIDES */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-semibold text-customSecondary uppercase tracking-wider">Printing Sides</label>
-          <div className="grid grid-cols-2 gap-4">
-            <div
-              onClick={() => setSides('single')}
-              className={`border rounded-lg p-4 cursor-pointer text-center transition-all ${
-                sides === 'single'
-                  ? 'border-brandBlue bg-brandBlue/5 ring-1 ring-brandBlue shadow-glow'
-                  : 'border-customBorder bg-surface hover:bg-elevated'
-              }`}
-            >
-              <span className="text-xl block">📄</span>
-              <span className="text-sm font-bold block mt-1.5 text-primaryTxt">Single-sided</span>
-            </div>
-            <div
-              onClick={() => setSides('double')}
-              className={`border rounded-lg p-4 cursor-pointer text-center transition-all relative ${
-                sides === 'double'
-                  ? 'border-brandBlue bg-brandBlue/5 ring-1 ring-brandBlue shadow-glow'
-                  : 'border-customBorder bg-surface hover:bg-elevated'
-              }`}
-            >
-              <span className="absolute -top-2.5 right-3 px-2 py-0.5 bg-brandCyan/10 text-[9px] font-bold text-brandCyan rounded-full border border-brandCyan/20">
-                Saves Paper
-              </span>
-              <span className="text-xl block">📋</span>
-              <span className="text-sm font-bold block mt-1.5 text-primaryTxt">Double-sided</span>
-            </div>
-          </div>
-        </div>
+
 
         {/* 3. COPIES STEPPER */}
         <div className="space-y-2.5">
@@ -248,43 +216,7 @@ export default function PrintOptions({ params }: { params: { kioskId: string } }
           </div>
         </div>
 
-        {/* 4. PAPER SIZE */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-semibold text-customSecondary uppercase tracking-wider block">Paper Size</label>
-          <div className="grid grid-cols-3 gap-3">
-            {(['A4', 'A3', 'Letter'] as const).map(size => {
-              const sizesMapping = {
-                A4: { w: 'w-10', h: 'h-14' },
-                A3: { w: 'w-12', h: 'h-16' },
-                Letter: { w: 'w-11', h: 'h-14' }
-              };
-              const proportions = sizesMapping[size];
-              const isSelected = paperSize === size;
 
-              return (
-                <div
-                  key={size}
-                  onClick={() => setPaperSize(size)}
-                  className={`border rounded-lg p-3 flex flex-col items-center justify-center cursor-pointer transition-all ${
-                    isSelected
-                      ? 'border-brandBlue bg-brandBlue/5 ring-1 ring-brandBlue shadow-glow'
-                      : 'border-customBorder bg-surface hover:bg-elevated'
-                  }`}
-                >
-                  <div className="flex items-center justify-center h-16 w-full">
-                    {/* Proportional rectangle representation */}
-                    <div className={`${proportions.w} ${proportions.h} rounded border-2 ${
-                      isSelected ? 'border-brandBlue bg-brandBlue/10' : 'border-customSecondary bg-ink'
-                    } transition-all flex items-center justify-center text-[8px] font-bold text-customSecondary`}>
-                      {size}
-                    </div>
-                  </div>
-                  <span className="text-xs font-bold text-primaryTxt mt-2">{size}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
         {/* 5. ORIENTATION */}
         <div className="space-y-2.5">
@@ -386,7 +318,7 @@ export default function PrintOptions({ params }: { params: { kioskId: string } }
       </div>
 
       {/* STICKY FOOTER */}
-      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-surface border-t border-customBorder p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.4)] z-40">
+      <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-surface border-t border-customBorder p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-4px_20px_rgba(0,0,0,0.4)] z-40">
         <div className="flex items-center justify-between mb-3.5">
           <div className="min-w-0">
             <span className="text-xs font-bold text-primaryTxt truncate block max-w-[180px]">
