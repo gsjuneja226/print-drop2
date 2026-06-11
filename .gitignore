@@ -34,3 +34,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+
+# print-server
+print-server/node_modules/
+print-server/printed_pdfs/
+print-server/temp/
+print-server/*.log
+*.log

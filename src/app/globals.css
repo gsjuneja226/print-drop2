@@ -3,25 +3,87 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Core palette */
+  --ink:        #FAFAFB;   /* very light grey/white background */
+  --surface:    #FFFFFF;   /* pure white card background */
+  --elevated:   #F3F4F6;   /* light grey for hovered/elevated elements */
+  --border:     #E5E7EB;   /* subtle light border */
+  --muted:      #9CA3AF;   /* disabled / placeholder text */
+  --secondary:  #4B5563;   /* secondary text */
+  --primary-txt:#111827;   /* main text */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Brand */
+  --blue:       #2563EB;   /* primary action blue */
+  --blue-dim:   #DBEAFE;   /* hover/active light state */
+  --cyan:       #0EA5E9;   /* accent state sky blue */
+  --orange:     #EA580C;   /* warning / highlight */
+  --red:        #DC2626;   /* error */
+
+  /* Spacing scale */
+  --space-xs: 4px; --space-sm: 8px; --space-md: 16px;
+  --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px;
+
+  /* Radii */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 20px; --r-xl: 28px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 0 0 1px var(--border);
+  --shadow-glow: 0 10px 30px rgba(37,99,235,0.04);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ink);
+  color: var(--primary-txt);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--r-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Page transitions & animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.12; }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes printAnim {
+  0% { transform: translateY(-4px); }
+  50% { transform: translateY(4px); }
+  100% { transform: translateY(-4px); }
+}
+
+.animate-print-head {
+  animation: printAnim 1.5s ease-in-out infinite;
 }
