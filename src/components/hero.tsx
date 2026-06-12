@@ -125,74 +125,30 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Column - Levitating Activity Metric Card */}
-        <div className="lg:col-span-5 flex justify-center items-center relative">
+        {/* Right Column - Kiosk Demo Loop Video */}
+        <div className="lg:col-span-5 w-full flex justify-center items-center relative mt-10 lg:mt-0 px-2 sm:px-0">
           
           {/* Radial Glow Blob */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-gradient-to-r from-[#4F46E5]/10 to-[#7C3AED]/10 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] bg-gradient-to-r from-[#4F46E5]/15 to-[#7C3AED]/15 rounded-full blur-[90px] pointer-events-none" />
 
-          {/* Levitating Card Container */}
+          {/* Levitating Video Frame */}
           <motion.div
-            animate={{ y: [0, -10, 0] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{
               repeat: Infinity,
-              duration: 4,
+              duration: 5,
               ease: 'easeInOut',
             }}
-            className="w-full max-w-[350px] bg-[#0E0E15]/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col space-y-5"
+            className="w-full max-w-[420px] aspect-[16/10] bg-[#0E0E15]/50 border border-white/10 rounded-3xl p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
           >
-            {/* Header */}
-            <div className="flex items-center justify-between border-b border-white/5 pb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-[#4F46E5]/10 flex items-center justify-center text-indigo-400">
-                  <Activity className="w-4 h-4" />
-                </div>
-                <span className="font-display font-bold text-sm text-white">Terminal Activity</span>
-              </div>
-              <span className="text-[10px] font-bold text-indigo-400 bg-indigo-400/10 px-2 py-0.5 rounded-full border border-indigo-400/20 uppercase tracking-wider">
-                Live Stats
-              </span>
-            </div>
-
-            {/* Live Stats Details */}
-            <div className="space-y-4">
-              <div className="bg-[#030303] border border-white/5 rounded-xl p-3.5 flex justify-between items-center">
-                <div>
-                  <span className="text-[10px] text-white/50 uppercase font-bold block">Total Pages Printed</span>
-                  <span className="text-xl font-bold font-display text-white mt-1 block">42,892+</span>
-                </div>
-                <Globe className="w-6 h-6 text-white/30 animate-pulse" />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-[#030303] border border-white/5 rounded-xl p-3.5">
-                  <span className="text-[10px] text-white/50 uppercase font-bold block">Avg Speed</span>
-                  <span className="text-sm font-bold font-display text-white mt-1 block">3.2 sec/page</span>
-                </div>
-                <div className="bg-[#030303] border border-white/5 rounded-xl p-3.5">
-                  <span className="text-[10px] text-white/50 uppercase font-bold block">Uptime SLA</span>
-                  <span className="text-sm font-bold font-display text-indigo-400 mt-1 block">99.98%</span>
-                </div>
-              </div>
-
-              {/* Dynamic Queue Status */}
-              <div className="border border-white/5 bg-[#030303]/50 rounded-xl p-4 space-y-3">
-                <span className="text-[10px] text-white/40 uppercase font-bold tracking-wider block">Simplified Print Cycle</span>
-                
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#4F46E5] text-white text-[10px] flex items-center justify-center font-bold">1</div>
-                  <span className="text-xs font-semibold text-white/80">Choose local terminal</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#4F46E5] text-white text-[10px] flex items-center justify-center font-bold">2</div>
-                  <span className="text-xs font-semibold text-white/80">Select document parameters</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#4F46E5] text-white text-[10px] flex items-center justify-center font-bold">3</div>
-                  <span className="text-xs font-semibold text-white/80">Pay UPI to trigger automatic print</span>
-                </div>
-              </div>
-            </div>
+            <video
+              src="/PrintDrop_kiosk_platform_202606120659.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover rounded-[1.25rem] bg-black"
+            />
           </motion.div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import Hero from '@/components/hero';
-import Scrollytelling from '@/components/scrollytelling';
+import HowItWorks from '@/components/how-it-works';
 import Features from '@/components/features';
 import Footer from '@/components/footer';
 
@@ -48,8 +48,8 @@ export default function MarketingLandingPage() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Scrollytelling Sequence */}
-      <Scrollytelling />
+      {/* How It Works Section */}
+      <HowItWorks />
 
       {/* Features Section */}
       <Features />
