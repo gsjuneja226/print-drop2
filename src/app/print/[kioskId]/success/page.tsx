@@ -45,7 +45,7 @@ export default function PrintSuccess({ params }: { params: { kioskId: string } }
     sessionStorage.removeItem('printdrop_otp');
     sessionStorage.removeItem('printdrop_otp_expiry');
 
-    router.push(`/print/${kioskId}`);
+    router.push(`/print/${kioskId}/upload`);
   };
 
   return (
