@@ -1,6 +1,6 @@
 # PrintDrop — Self-Service Printing Kiosk SaaS Platform
 
-PrintDrop is a complete, production-ready, scalable self-service printing kiosk SaaS platform. It allows operators to deploy unlimited kiosk laptops connected to standard USB printers. Users scan a QR code, upload files, customize parameters, pay via UPI/Card, and retrieve prints using a 4-digit code in under 60 seconds without staff presence.
+PrintDrop is a complete, production-ready, scalable self-service printing kiosk SaaS platform. It allows operators to deploy unlimited kiosk laptops connected to standard USB printers. Users scan a QR code, upload files, customize parameters, pay via UPI/Card, and under 60 seconds without staff presence.
 
 ---
 
