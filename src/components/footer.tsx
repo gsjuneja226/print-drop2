@@ -26,10 +26,9 @@ export default function Footer() {
 
         {/* Center - Links */}
         <div className="flex flex-wrap justify-center gap-6 sm:gap-8 font-semibold text-white/60">
-          <a href="#features" className="hover:text-white transition-colors">Features</a>
           <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
-          <a href="#" className="hover:text-white transition-colors">Pricing</a>
-          <a href="#" className="hover:text-white transition-colors">Docs</a>
+          <a href="#features" className="hover:text-white transition-colors">Platform Features</a>
+          <a href="/admin" className="hover:text-white transition-colors">Admin Portal</a>
         </div>
 
         {/* Right - Copyright */}

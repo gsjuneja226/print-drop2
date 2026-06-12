@@ -16,14 +16,14 @@ export default function MarketingLandingPage() {
       
       {/* HEADER NAVBAR */}
       <header className="border-b border-white/5 bg-[#030303]/80 backdrop-blur-md sticky top-0 z-50 transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-20 flex items-center justify-between">
           
           {/* Logo */}
           <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => router.push('/')}>
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-[#4F46E5] to-[#7C3AED] flex items-center justify-center font-display font-bold text-white text-base shadow-sm">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-tr from-[#4F46E5] to-[#7C3AED] flex items-center justify-center font-display font-bold text-white text-sm sm:text-base shadow-sm">
               PD
             </div>
-            <span className="font-display font-bold text-lg tracking-wide text-white">
+            <span className="font-display font-bold text-base sm:text-lg tracking-wide text-white">
               PrintDrop
             </span>
           </div>
@@ -37,7 +37,7 @@ export default function MarketingLandingPage() {
           {/* CTA */}
           <button
             onClick={() => router.push('/admin')}
-            className="px-5 py-2.5 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-xs font-semibold text-white rounded-xl transition-all shadow-md shadow-[#4F46E5]/10 hover:shadow-lg hover:shadow-[#4F46E5]/20 flex items-center gap-1.5"
+            className="hidden sm:flex px-5 py-2.5 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-xs font-semibold text-white rounded-xl transition-all shadow-md shadow-[#4F46E5]/10 hover:shadow-lg hover:shadow-[#4F46E5]/20 items-center gap-1.5"
           >
             Super Admin
             <ArrowRight className="w-3.5 h-3.5" />

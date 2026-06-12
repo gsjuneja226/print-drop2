@@ -48,7 +48,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#030303] px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <section className="relative min-h-0 lg:min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#030303] px-4 sm:px-6 lg:px-8 py-6 sm:py-12 lg:py-20">
       {/* Subtle Dot Grid Background */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-25"
@@ -58,16 +58,16 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center relative z-10">
         {/* Left Column - Content */}
-        <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-left">
+        <div className="lg:col-span-6 space-y-4 sm:space-y-6 text-left">
           
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 bg-[#4F46E5]/10 border border-[#4F46E5]/20 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-indigo-400"
+            className="inline-flex items-center gap-2 bg-[#4F46E5]/10 border border-[#4F46E5]/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-sm font-semibold text-indigo-400"
           >
             <span className="w-1.5 h-1.5 bg-[#4F46E5] rounded-full animate-ping" />
             ✦ Self-Service Printing Platform
@@ -79,7 +79,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight font-display"
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight font-display"
             >
               Print Anything.
               <br />
@@ -95,7 +95,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl leading-relaxed font-medium"
+            className="text-xs sm:text-base md:text-lg text-white/70 max-w-xl leading-relaxed font-medium"
           >
             Deploy kiosks in minutes. No staff. Scan, upload, pay, and print in under 60 seconds. High-speed, secure, and hassle-free.
           </motion.p>
@@ -105,31 +105,23 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex flex-col sm:flex-row gap-4 pt-2"
+            className="flex flex-row gap-3 pt-1 w-full"
           >
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-8 py-4 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-[#4F46E5]/20 hover:shadow-xl hover:shadow-[#4F46E5]/30 transform active:scale-95 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] hover:from-[#4338CA] hover:to-[#6D28D9] text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-[#4F46E5]/20 hover:shadow-xl hover:shadow-[#4F46E5]/30 transform active:scale-95 flex items-center justify-center gap-2"
             >
               Get Started Free
               <ChevronRight className="w-4 h-4" />
             </button>
-            
-            <a
-              href="#how-it-works"
-              className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/80 hover:bg-white/5 text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
-            >
-              <Play className="w-4 h-4 fill-current" />
-              Watch Demo
-            </a>
           </motion.div>
         </div>
 
         {/* Right Column - Kiosk Demo Loop Video */}
-        <div className="lg:col-span-5 w-full flex justify-center items-center relative mt-10 lg:mt-0 px-2 sm:px-0">
+        <div className="lg:col-span-6 w-full flex justify-center items-center relative mt-4 lg:mt-0 px-0">
           
           {/* Radial Glow Blob */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[380px] h-[280px] sm:h-[380px] bg-gradient-to-r from-[#4F46E5]/15 to-[#7C3AED]/15 rounded-full blur-[90px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[480px] h-[250px] sm:h-[480px] bg-gradient-to-r from-[#4F46E5]/15 to-[#7C3AED]/15 rounded-full blur-[90px] pointer-events-none" />
 
           {/* Levitating Video Frame */}
           <motion.div
@@ -139,7 +131,7 @@ export default function Hero() {
               duration: 5,
               ease: 'easeInOut',
             }}
-            className="w-full max-w-[420px] aspect-[16/10] bg-[#0E0E15]/50 border border-white/10 rounded-3xl p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
+            className="w-full max-w-none sm:max-w-[600px] lg:max-w-none aspect-[16/10] bg-[#0E0E15]/50 border border-white/10 rounded-3xl p-1.5 shadow-[0_25px_60px_rgba(79,70,229,0.15)] overflow-hidden"
           >
             <video
               src="/PrintDrop_kiosk_platform_202606120659.mp4"
