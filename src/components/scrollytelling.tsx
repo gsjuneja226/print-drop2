@@ -220,19 +220,19 @@ export default function Scrollytelling() {
       </AnimatePresence>
 
       {/* 2. Scrollytelling Scroll Track Container */}
-      <div ref={containerRef} className="relative h-[400vh] bg-white">
+      <div ref={containerRef} className="relative h-[400vh] bg-[#030303]">
         
         {/* Sticky viewport frame */}
         <div className="sticky top-0 h-screen w-full flex flex-col lg:flex-row items-center justify-between overflow-hidden">
           
           {/* Left Column: Vertical Step Narratives */}
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-full flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-6 lg:py-0 relative z-20">
+          <div className="w-full lg:w-[40%] h-[45vh] lg:h-full flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-6 lg:py-0 relative z-20">
             <div className="max-w-md w-full mx-auto">
               
               <div className="flex gap-6 sm:gap-8 relative">
                 
                 {/* Vertical Progress Bar Track */}
-                <div className="w-1 bg-[#E5E7F0] rounded-full relative overflow-hidden self-stretch my-2">
+                <div className="w-1 bg-white/10 rounded-full relative overflow-hidden self-stretch my-2">
                   <motion.div
                     className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#4F46E5] to-[#7C3AED] rounded-full"
                     style={{ height: scrollIndicatorHeight }}
@@ -251,27 +251,27 @@ export default function Scrollytelling() {
                         className={`space-y-2.5 transition-all duration-500 transform ${
                           isActive
                             ? 'opacity-100 translate-x-0'
-                            : 'opacity-30 -translate-x-1 filter blur-[0.5px]'
+                            : 'opacity-25 -translate-x-1 filter blur-[0.5px]'
                         }`}
                       >
                         {/* Number badge and Icon */}
                         <div className="flex items-center gap-3">
                           <span className={`font-display font-extrabold text-sm ${
-                            isActive ? 'text-[#4F46E5]' : 'text-[#0F0F1A]/50'
+                            isActive ? 'text-indigo-400' : 'text-white/30'
                           }`}>
                             {step.number}
                           </span>
                           <div className={`p-1.5 rounded-lg border transition-colors ${
                             isActive 
-                              ? 'bg-[#4F46E5]/10 border-[#4F46E5]/20 text-[#4F46E5]' 
-                              : 'bg-transparent border-[#E5E7F0] text-[#0F0F1A]/40'
+                              ? 'bg-[#4F46E5]/20 border-[#4F46E5]/35 text-indigo-400' 
+                              : 'bg-transparent border-white/10 text-white/40'
                           }`}>
                             <Icon className="w-4 h-4 stroke-[2.2]" />
                           </div>
                         </div>
 
                         {/* Title and Collapsible Details */}
-                        <h4 className="font-display font-extrabold text-lg sm:text-xl text-[#0F0F1A]">
+                        <h4 className="font-display font-extrabold text-lg sm:text-xl text-white">
                           {step.title}
                         </h4>
                         
@@ -281,7 +281,7 @@ export default function Scrollytelling() {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="text-xs sm:text-sm text-[#0F0F1A]/65 leading-relaxed font-medium"
+                            className="text-xs sm:text-sm text-white/70 leading-relaxed font-medium"
                           >
                             {step.desc}
                           </motion.p>
@@ -296,14 +296,14 @@ export default function Scrollytelling() {
           </div>
 
           {/* Right Column: HTML5 Canvas Kiosk Assembler */}
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-full bg-[#F8F9FF] border-t lg:border-t-0 lg:border-l border-[#E5E7F0] flex items-center justify-center p-6 sm:p-12 relative z-10">
+          <div className="w-full lg:w-[60%] h-[55vh] lg:h-full bg-black flex items-center justify-center relative z-10 overflow-hidden">
             {/* Radiant glow behind the Canvas */}
-            <div className="absolute w-[280px] sm:w-[360px] h-[280px] sm:h-[360px] bg-gradient-to-tr from-[#4F46E5]/10 to-[#7C3AED]/10 rounded-full blur-[70px] pointer-events-none" />
+            <div className="absolute w-[360px] sm:w-[500px] h-[360px] sm:h-[500px] bg-gradient-to-tr from-[#4F46E5]/15 to-[#7C3AED]/15 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="w-full h-full max-h-[85%] flex items-center justify-center relative">
+            <div className="w-full h-full flex items-center justify-center relative">
               <canvas
                 ref={canvasRef}
-                className="max-w-full max-h-full object-contain rounded-2xl shadow-[0_15px_40px_rgba(79,70,229,0.06)] bg-white border border-[#E5E7F0] overflow-hidden"
+                className="w-full h-full object-contain bg-black overflow-hidden"
               />
             </div>
           </div>

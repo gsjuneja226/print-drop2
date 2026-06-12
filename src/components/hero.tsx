@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { Play, QrCode, Search, MapPin, X, ChevronRight } from 'lucide-react';
+import { Play, Search, MapPin, X, ChevronRight, Activity, Globe, RefreshCw } from 'lucide-react';
 
 export default function Hero() {
   const router = useRouter();
@@ -48,12 +48,12 @@ export default function Hero() {
   );
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-white px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#030303] px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
       {/* Subtle Dot Grid Background */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-60"
+        className="absolute inset-0 pointer-events-none opacity-25"
         style={{
-          backgroundImage: 'radial-gradient(#4F46E5 1.2px, transparent 1.2px)',
+          backgroundImage: 'radial-gradient(#4F46E5 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       />
@@ -67,7 +67,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 bg-[#4F46E5]/10 border border-[#4F46E5]/20 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-[#4F46E5]"
+            className="inline-flex items-center gap-2 bg-[#4F46E5]/10 border border-[#4F46E5]/20 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-indigo-400"
           >
             <span className="w-1.5 h-1.5 bg-[#4F46E5] rounded-full animate-ping" />
             ✦ Self-Service Printing Platform
@@ -79,7 +79,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F0F1A] leading-[1.1] tracking-tight font-display"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight font-display"
             >
               Print Anything.
               <br />
@@ -95,7 +95,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-sm sm:text-base md:text-lg text-[#0F0F1A]/70 max-w-xl leading-relaxed font-medium"
+            className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl leading-relaxed font-medium"
           >
             Deploy kiosks in minutes. No staff. Scan, upload, pay, and print in under 60 seconds. High-speed, secure, and hassle-free.
           </motion.p>
@@ -117,7 +117,7 @@ export default function Hero() {
             
             <a
               href="#how-it-works"
-              className="px-8 py-4 border border-[#4F46E5]/30 hover:border-[#4F46E5] text-[#4F46E5] hover:bg-[#4F46E5]/5 text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
+              className="px-8 py-4 border border-white/10 hover:border-white/30 text-white/80 hover:bg-white/5 text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
             >
               <Play className="w-4 h-4 fill-current" />
               Watch Demo
@@ -125,63 +125,79 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Column - Levitating Glassmorphism Mockup Card */}
+        {/* Right Column - Levitating Activity Metric Card */}
         <div className="lg:col-span-5 flex justify-center items-center relative">
           
           {/* Radial Glow Blob */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-gradient-to-r from-[#4F46E5]/20 to-[#7C3AED]/20 rounded-full blur-[70px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-gradient-to-r from-[#4F46E5]/10 to-[#7C3AED]/10 rounded-full blur-[80px] pointer-events-none" />
 
           {/* Levitating Card Container */}
           <motion.div
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -10, 0] }}
             transition={{
               repeat: Infinity,
               duration: 4,
               ease: 'easeInOut',
             }}
-            className="w-full max-w-[340px] bg-white/60 backdrop-blur-xl border border-white/60 rounded-3xl p-8 shadow-[0_20px_50px_rgba(79,70,229,0.08)] flex flex-col items-center text-center space-y-6"
+            className="w-full max-w-[350px] bg-[#0E0E15]/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col space-y-5"
           >
-            {/* Header / Brand */}
-            <div className="flex items-center gap-2 bg-[#4F46E5]/5 border border-[#4F46E5]/10 px-3 py-1 rounded-full">
-              <span className="w-2 h-2 rounded-full bg-[#4F46E5]" />
-              <span className="text-[10px] font-bold text-[#4F46E5] uppercase tracking-widest">PrintDrop Kiosk</span>
-            </div>
-
-            {/* QR Mockup Area */}
-            <div className="w-36 h-36 bg-white border border-[#E5E7F0] rounded-2xl flex items-center justify-center shadow-inner relative group overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#4F46E5]/5 to-[#7C3AED]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <QrCode className="w-24 h-24 text-[#0F0F1A]" />
-            </div>
-
-            {/* Labels */}
-            <div className="space-y-1">
-              <h3 className="font-display font-bold text-lg text-[#0F0F1A]">Scan to Print</h3>
-              <p className="text-xs text-[#0F0F1A]/60 font-medium">Use your camera to scan and start uploading</p>
-            </div>
-
-            {/* OTP Section */}
-            <div className="w-full space-y-2">
-              <div className="flex justify-between items-center px-1">
-                <span className="text-[10px] uppercase font-bold text-[#0F0F1A]/50">Or Enter 4-Digit OTP</span>
-                <span className="text-[10px] font-semibold text-[#4F46E5]">Active</span>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-white/5 pb-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-[#4F46E5]/10 flex items-center justify-center text-indigo-400">
+                  <Activity className="w-4 h-4" />
+                </div>
+                <span className="font-display font-bold text-sm text-white">Terminal Activity</span>
               </div>
-              
-              <div className="grid grid-cols-4 gap-2.5">
-                {['5', '8', '2', '9'].map((digit, i) => (
-                  <div
-                    key={i}
-                    className="h-12 border-2 border-[#E5E7F0] bg-white/80 rounded-xl flex items-center justify-center font-display font-bold text-lg text-[#0F0F1A] shadow-sm"
-                  >
-                    {digit}
-                  </div>
-                ))}
+              <span className="text-[10px] font-bold text-indigo-400 bg-indigo-400/10 px-2 py-0.5 rounded-full border border-indigo-400/20 uppercase tracking-wider">
+                Live Stats
+              </span>
+            </div>
+
+            {/* Live Stats Details */}
+            <div className="space-y-4">
+              <div className="bg-[#030303] border border-white/5 rounded-xl p-3.5 flex justify-between items-center">
+                <div>
+                  <span className="text-[10px] text-white/50 uppercase font-bold block">Total Pages Printed</span>
+                  <span className="text-xl font-bold font-display text-white mt-1 block">42,892+</span>
+                </div>
+                <Globe className="w-6 h-6 text-white/30 animate-pulse" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-[#030303] border border-white/5 rounded-xl p-3.5">
+                  <span className="text-[10px] text-white/50 uppercase font-bold block">Avg Speed</span>
+                  <span className="text-sm font-bold font-display text-white mt-1 block">3.2 sec/page</span>
+                </div>
+                <div className="bg-[#030303] border border-white/5 rounded-xl p-3.5">
+                  <span className="text-[10px] text-white/50 uppercase font-bold block">Uptime SLA</span>
+                  <span className="text-sm font-bold font-display text-indigo-400 mt-1 block">99.98%</span>
+                </div>
+              </div>
+
+              {/* Dynamic Queue Status */}
+              <div className="border border-white/5 bg-[#030303]/50 rounded-xl p-4 space-y-3">
+                <span className="text-[10px] text-white/40 uppercase font-bold tracking-wider block">Simplified Print Cycle</span>
+                
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#4F46E5] text-white text-[10px] flex items-center justify-center font-bold">1</div>
+                  <span className="text-xs font-semibold text-white/80">Choose local terminal</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#4F46E5] text-white text-[10px] flex items-center justify-center font-bold">2</div>
+                  <span className="text-xs font-semibold text-white/80">Select document parameters</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#4F46E5] text-white text-[10px] flex items-center justify-center font-bold">3</div>
+                  <span className="text-xs font-semibold text-white/80">Pay UPI to trigger automatic print</span>
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Kiosk Finder Modal (Stunning Slide-in overlay) */}
+      {/* Kiosk Finder Modal (Stunning Dark Slide-in overlay) */}
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6">
@@ -192,7 +208,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0 bg-[#0F0F1A]/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
 
             {/* Modal Content */}
@@ -202,17 +218,17 @@ export default function Hero() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-              className="bg-white rounded-3xl border border-[#E5E7F0] shadow-2xl w-full max-w-lg p-6 relative overflow-hidden flex flex-col max-h-[85vh] z-10"
+              className="bg-[#0D0D12] rounded-3xl border border-white/10 shadow-2xl w-full max-w-lg p-6 relative overflow-hidden flex flex-col max-h-[85vh] z-10 text-white"
             >
               {/* Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-[#E5E7F0] mb-4">
+              <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-4">
                 <div>
-                  <h3 className="font-display font-bold text-lg text-[#0F0F1A]">Find a Printing Kiosk</h3>
-                  <p className="text-xs text-[#0F0F1A]/60">Select an online kiosk to start document upload</p>
+                  <h3 className="font-display font-bold text-lg text-white">Find a Printing Kiosk</h3>
+                  <p className="text-xs text-white/60">Select an online kiosk to start document upload</p>
                 </div>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="p-1.5 hover:bg-[#E5E7F0]/50 rounded-lg text-[#0F0F1A]/70 hover:text-[#0F0F1A] transition-colors"
+                  className="p-1.5 hover:bg-white/5 rounded-lg text-white/70 hover:text-white transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -220,13 +236,13 @@ export default function Hero() {
 
               {/* Search input */}
               <div className="relative mb-4">
-                <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-[#0F0F1A]/40" />
+                <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-white/40" />
                 <input
                   type="text"
                   placeholder="Type location (e.g. library, hostel)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full border-2 border-[#E5E7F0] rounded-xl py-3.5 pl-10 pr-4 text-sm font-semibold text-[#0F0F1A] focus:outline-none focus:border-[#4F46E5] transition-all bg-white"
+                  className="w-full border border-white/10 rounded-xl py-3.5 pl-10 pr-4 text-sm font-semibold text-white focus:outline-none focus:border-[#4F46E5] transition-all bg-[#030303]"
                 />
               </div>
 
@@ -235,7 +251,7 @@ export default function Hero() {
                 {loading ? (
                   <div className="flex flex-col items-center py-12 space-y-3">
                     <div className="w-10 h-10 border-4 border-[#4F46E5] border-t-transparent rounded-full animate-spin" />
-                    <p className="text-xs text-[#0F0F1A]/60 font-medium">Fetching online terminals...</p>
+                    <p className="text-xs text-white/60 font-medium">Fetching online terminals...</p>
                   </div>
                 ) : filteredKiosks.length > 0 ? (
                   filteredKiosks.map((kiosk) => {
@@ -247,34 +263,34 @@ export default function Hero() {
                           setIsModalOpen(false);
                           router.push(`/print/${kiosk.id}/upload`);
                         }}
-                        className="w-full p-4 text-left border border-[#E5E7F0] hover:border-[#4F46E5]/40 hover:bg-[#4F46E5]/5 rounded-2xl transition-all flex items-center justify-between group shadow-sm"
+                        className="w-full p-4 text-left border border-white/5 hover:border-[#4F46E5]/40 hover:bg-[#4F46E5]/10 rounded-2xl transition-all flex items-center justify-between group shadow-sm bg-[#030303]/50"
                       >
                         <div className="space-y-1 max-w-[80%]">
-                          <p className="font-semibold text-sm text-[#0F0F1A] flex items-center gap-1.5">
+                          <p className="font-semibold text-sm text-white flex items-center gap-1.5">
                             {kiosk.location_name}
                             <span
                               className={`w-2 h-2 rounded-full ${
-                                isOnline ? 'bg-emerald-500' : 'bg-amber-500'
+                                isOnline ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-amber-500'
                               }`}
                             />
                           </p>
                           {kiosk.location_addr && (
-                            <p className="text-xs text-[#0F0F1A]/60 truncate font-medium flex items-center gap-1">
-                              <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-[#0F0F1A]/40" />
+                            <p className="text-xs text-white/60 truncate font-medium flex items-center gap-1">
+                              <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-white/40" />
                               {kiosk.location_addr}
                             </p>
                           )}
                         </div>
-                        <div className="p-2 rounded-lg bg-[#E5E7F0]/40 group-hover:bg-[#4F46E5] group-hover:text-white transition-colors">
-                          <ChevronRight className="w-4 h-4 text-[#0F0F1A]/60 group-hover:text-white" />
+                        <div className="p-2 rounded-lg bg-white/5 group-hover:bg-[#4F46E5] group-hover:text-white transition-colors">
+                          <ChevronRight className="w-4 h-4 text-white/60 group-hover:text-white" />
                         </div>
                       </button>
                     );
                   })
                 ) : (
                   <div className="text-center py-12 space-y-2">
-                    <p className="text-sm text-[#0F0F1A]/60 font-semibold">No kiosks found</p>
-                    <p className="text-xs text-[#0F0F1A]/40 font-medium">Try typing another location query</p>
+                    <p className="text-sm text-white/60 font-semibold">No kiosks found</p>
+                    <p className="text-xs text-white/40 font-medium">Try typing another location query</p>
                   </div>
                 )}
               </div>

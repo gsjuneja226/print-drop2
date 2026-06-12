@@ -75,7 +75,7 @@ const cardVariants = {
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-white relative overflow-hidden">
+    <section id="features" className="py-24 bg-[#08080C] relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-[20%] left-[5%] w-[300px] h-[300px] bg-[#4F46E5]/5 rounded-full blur-[90px] pointer-events-none" />
 
@@ -88,7 +88,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5 }}
-            className="text-xs uppercase font-bold tracking-widest text-[#4F46E5]"
+            className="text-xs uppercase font-bold tracking-widest text-indigo-400"
           >
             Engineered Excellence
           </motion.span>
@@ -98,7 +98,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-extrabold text-[#0F0F1A] font-display"
+            className="text-3xl sm:text-4xl font-extrabold text-white font-display"
           >
             Platform Features
           </motion.h2>
@@ -108,7 +108,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm sm:text-base text-[#0F0F1A]/70 font-medium"
+            className="text-sm sm:text-base text-white/70 font-medium"
           >
             Robust features to keep your self-service printing network running on autopilot 24/7.
           </motion.p>
@@ -128,7 +128,7 @@ export default function Features() {
               <motion.div
                 key={idx}
                 variants={cardVariants}
-                className="bg-white border border-[#E5E7F0] rounded-2xl p-6 hover:border-[#4F46E5]/40 hover:shadow-xl hover:shadow-[#4F46E5]/5 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
+                className="bg-[#0E0E16] border border-white/5 rounded-2xl p-6 hover:border-[#4F46E5]/40 hover:shadow-2xl hover:shadow-[#4F46E5]/5 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div className="space-y-4">
                   {/* Icon Square */}
@@ -138,10 +138,10 @@ export default function Features() {
 
                   {/* Title & Description */}
                   <div className="space-y-2">
-                    <h3 className="font-display font-bold text-base text-[#0F0F1A]">
+                    <h3 className="font-display font-bold text-base text-white">
                       {feat.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#0F0F1A]/60 leading-relaxed font-medium">
+                    <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-medium">
                       {feat.desc}
                     </p>
                   </div>
