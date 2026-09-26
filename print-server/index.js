@@ -1,10 +1,10 @@
-const express  = require('express');
-const printer  = require('pdf-to-printer');
-const fetch    = require('node-fetch');
-const fs       = require('fs');
-const path     = require('path');
+const express = require('express');
+const printer = require('pdf-to-printer');
+const fetch = require('node-fetch');
+const fs = require('fs');
+const path = require('path');
 const { exec } = require('child_process');
-const app      = express();
+const app = express();
 
 // Load environment variables from parent directory .env.local if present
 try {
@@ -61,27 +61,23 @@ app.get('/status', async (req, res) => {
 app.post('/print', async (req, res) => {
   const { fileUrl, jobId, fileName, options } = req.body;
   const {
-    colorMode    = 'bw',
-    sides        = 'single',
-    copies       = 1,
-    orientation  = 'portrait',
-    paperSize    = 'A4',
+    colorMode = 'bw',
+    sides = 'single',
+    copies = 1,
+    orientation = 'portrait',
+    paperSize = 'A4',
   } = options || {};
 
-  const tempDir  = path.join(__dirname, 'temp');
+  const tempDir = path.join(__dirname, 'temp');
   if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
   const tempFile = path.join(tempDir, `job_${jobId}_${Date.now()}.pdf`);
 
   try {
-    // Download PDF from secure URL via streaming (handles 20MB+ files efficiently)
-    const resp   = await fetch(fileUrl);
+    // Download PDF from secure URL
+    const resp = await fetch(fileUrl);
     if (!resp.ok) throw new Error(`Download failed: ${resp.status}`);
-    const fileStream = fs.createWriteStream(tempFile);
-    await new Promise((resolve, reject) => {
-      resp.body.pipe(fileStream);
-      resp.body.on('error', reject);
-      fileStream.on('finish', resolve);
-    });
+    const buffer = await resp.buffer();
+    await fs.promises.writeFile(tempFile, buffer);
     console.log(`[PRINT SERVER] Downloaded document for Job ID: ${jobId}`);
 
     // Create permanent printed PDFs directory
@@ -100,22 +96,22 @@ app.post('/print', async (req, res) => {
     // Removed the code that automatically opens the printed PDF in the default system viewer
     // to prevent showing the photo on screen and requiring manual print confirmation.
 
-    // Spool print job using pdf-to-printer asynchronously (don't await)
-    // This prevents the kiosk from timing out and showing an error while a 20MB+ file is spooling.
-    console.log(`[PRINT SERVER] Queuing physical spool print in background (Copies: ${copies})...`);
-    printer.print(finalPrintedFile, {
-      copies:    Number(copies),
-      color:     colorMode === 'color',
-      duplex:    sides === 'double' ? 'two-sided-long-edge' : false,
-      scale:     'fit',
-      paperSize: paperSize,
-      landscape: orientation === 'landscape',
-    }).then(() => {
-      console.log(`[PRINT SERVER] Successfully spooled Job ${jobId} to physical printer queue.`);
-    }).catch(printErr => {
+    // Spool print job using pdf-to-printer (wrapped in try/catch to ensure reliability)
+    try {
+      console.log(`[PRINT SERVER] Attempting physical spool print (Copies: ${copies})...`);
+      await printer.print(finalPrintedFile, {
+        copies: Number(copies),
+        color: colorMode === 'color',
+        duplex: sides === 'double' ? 'two-sided-long-edge' : false,
+        scale: 'fit',
+        paperSize: paperSize,
+        landscape: orientation === 'landscape',
+      });
+      console.log('[PRINT SERVER] Successfully spooled to physical printer queue.');
+    } catch (printErr) {
       console.warn('[PRINT SERVER WARNING] Physical printer spooling failed or was cancelled:', printErr.message);
-      console.warn('[PRINT SERVER] Kiosk operation is unaffected since PDF was saved locally.');
-    });
+      console.warn('[PRINT SERVER] Kiosk operation is unaffected since PDF was saved and opened locally.');
+    }
 
     // Clean up temporary file
     try {
@@ -127,7 +123,7 @@ app.post('/print', async (req, res) => {
   } catch (err) {
     console.error('[PRINT ERROR]', err.message);
     if (fs.existsSync(tempFile)) {
-      try { await fs.promises.unlink(tempFile); } catch (e) {}
+      try { await fs.promises.unlink(tempFile); } catch (e) { }
     }
     res.status(500).json({ success: false, error: err.message });
   }
@@ -160,7 +156,7 @@ const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'http:
 app.listen(3001, () => {
   console.log(`PrintDrop print server starting for Kiosk: ${KIOSK_ID} → http://localhost:3001`);
   console.log(`Print server targeted web app URL: ${APP_URL}`);
-  
+
   printer.getPrinters().then(p => {
     console.log('Available Printers:', p.map(x => x.name).join(', ') || 'None found');
   }).catch(err => {
@@ -187,7 +183,7 @@ app.listen(3001, () => {
 
   pingKiosk();
   setInterval(pingKiosk, 60000);
-  
+
   // Prune old pdfs on start and every 24 hours
   pruneOldPdfs().catch(console.error);
   setInterval(() => {
