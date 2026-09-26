@@ -87,7 +87,7 @@ app.post('/print', async (req, res) => {
     // Clean and prepare the filename
     const baseName = fileName || 'document.pdf';
     const cleanFileName = baseName.replace(/[^a-zA-Z0-9.-]/g, '_');
-    const finalPrintedFile = path.join(printedDir, `Job_${jobId}_${cleanFileName}`);
+    const finalPrintedFile = path.join(printedDir, `Job_${jobId}_${Date.now()}_${cleanFileName}`);
 
     // Copy to printed folder
     await fs.promises.copyFile(tempFile, finalPrintedFile);
