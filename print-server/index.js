@@ -93,20 +93,14 @@ app.post('/print', async (req, res) => {
     await fs.promises.copyFile(tempFile, finalPrintedFile);
     console.log(`[PRINT SERVER] Saved PDF locally to: ${finalPrintedFile}`);
 
-    // Automatically open the printed PDF in the default system viewer
-    if (process.platform === 'win32') {
-      exec(`start "" "${finalPrintedFile}"`);
-    } else if (process.platform === 'darwin') {
-      exec(`open "${finalPrintedFile}"`);
-    } else {
-      exec(`xdg-open "${finalPrintedFile}"`);
-    }
-    console.log(`[PRINT SERVER] Triggered default viewer to open printed file.`);
+    // Removed the code that automatically opens the printed PDF in the default system viewer
+    // to prevent showing the photo on screen and requiring manual print confirmation.
+
 
     // Spool print job using pdf-to-printer (wrapped in try/catch to ensure reliability)
     try {
       console.log(`[PRINT SERVER] Attempting physical spool print (Copies: ${copies})...`);
-      await printer.print(tempFile, {
+      await printer.print(finalPrintedFile, {
         copies:    Number(copies),
         color:     colorMode === 'color',
         duplex:    sides === 'double' ? 'two-sided-long-edge' : false,
