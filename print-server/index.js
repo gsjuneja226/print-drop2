@@ -73,11 +73,15 @@ app.post('/print', async (req, res) => {
   const tempFile = path.join(tempDir, `job_${jobId}_${Date.now()}.pdf`);
 
   try {
-    // Download PDF from secure URL
+    // Download PDF from secure URL via streaming (handles 20MB+ files efficiently)
     const resp   = await fetch(fileUrl);
     if (!resp.ok) throw new Error(`Download failed: ${resp.status}`);
-    const buffer = await resp.buffer();
-    await fs.promises.writeFile(tempFile, buffer);
+    const fileStream = fs.createWriteStream(tempFile);
+    await new Promise((resolve, reject) => {
+      resp.body.pipe(fileStream);
+      resp.body.on('error', reject);
+      fileStream.on('finish', resolve);
+    });
     console.log(`[PRINT SERVER] Downloaded document for Job ID: ${jobId}`);
 
     // Create permanent printed PDFs directory
@@ -96,22 +100,22 @@ app.post('/print', async (req, res) => {
     // Removed the code that automatically opens the printed PDF in the default system viewer
     // to prevent showing the photo on screen and requiring manual print confirmation.
 
-    // Spool print job using pdf-to-printer (wrapped in try/catch to ensure reliability)
-    try {
-      console.log(`[PRINT SERVER] Attempting physical spool print (Copies: ${copies})...`);
-      await printer.print(finalPrintedFile, {
-        copies:    Number(copies),
-        color:     colorMode === 'color',
-        duplex:    sides === 'double' ? 'two-sided-long-edge' : false,
-        scale:     'fit',
-        paperSize: paperSize,
-        landscape: orientation === 'landscape',
-      });
-      console.log('[PRINT SERVER] Successfully spooled to physical printer queue.');
-    } catch (printErr) {
+    // Spool print job using pdf-to-printer asynchronously (don't await)
+    // This prevents the kiosk from timing out and showing an error while a 20MB+ file is spooling.
+    console.log(`[PRINT SERVER] Queuing physical spool print in background (Copies: ${copies})...`);
+    printer.print(finalPrintedFile, {
+      copies:    Number(copies),
+      color:     colorMode === 'color',
+      duplex:    sides === 'double' ? 'two-sided-long-edge' : false,
+      scale:     'fit',
+      paperSize: paperSize,
+      landscape: orientation === 'landscape',
+    }).then(() => {
+      console.log(`[PRINT SERVER] Successfully spooled Job ${jobId} to physical printer queue.`);
+    }).catch(printErr => {
       console.warn('[PRINT SERVER WARNING] Physical printer spooling failed or was cancelled:', printErr.message);
-      console.warn('[PRINT SERVER] Kiosk operation is unaffected since PDF was saved and opened locally.');
-    }
+      console.warn('[PRINT SERVER] Kiosk operation is unaffected since PDF was saved locally.');
+    });
 
     // Clean up temporary file
     try {
